@@ -55,7 +55,7 @@
 
         async function UpdateBookmarklet(){
             let id = idElm.value.toString().replaceAll('"', "")
-            let code = `javascript:  "Made by anonynmous-exdash  for Maltion. Contact at joeizcooler@gmail.com";  if (typeof vm == "undefined")  var vm = document    .getElementById("app")    ._reactRootContainer._internalRoot.current.child.pendingProps.store.getState()    .scratchGui.vm;vm.runtime.canAddCloudVariable = function () {  return "true";};alert(  "Downloading, and loading MClient from the internet. Hit enter to start download.",);fetch("${id}")  .then((r) => r.arrayBuffer())  .then((buffer) => vm.loadProject(buffer))  .then(() => {    console.log("Loaded project!");    alert("Loaded project!");  })  .catch((error) => {    console.log("Error loading custom project;", error);  });`
+            let code = `javascript:  "Made by anonynmous-exdash  for Maltion. Contact at joeizcooler@gmail.com";  if (typeof vm == "undefined")  var vm = document    .getElementById("app")    ._reactRootContainer._internalRoot.current.child.pendingProps.store.getState()    .scratchGui.vm;vm.runtime.canAddCloudVariable = function () {  return "true";};alert(  "Downloading, and loading MClient from the internet. Hit enter to start download and please be patient.",);fetch("${id}")  .then((r) => r.arrayBuffer())  .then((buffer) => vm.loadProject(buffer))  .then(() => {    console.log("Loaded project!");    alert("Loaded project!");  })  .catch((error) => {   alert("Something went wrong when downloading the project!"); console.log("Error loading custom project;", error);  });`
             link.textContent = "Drag THIS link to your bookmark bar"
             link.href = code
 
