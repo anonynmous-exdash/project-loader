@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEX DASH</title>
+
+    <style>
+        body{
+            margin:0;
+        }
+        #contents{
+            margin:5px;
+        }
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        footer{
+            position:absolute;
+            bottom:0;
+            background-color:gray;
+            width:100vw;
+            height:4vh
+        }
+    </style>
+</head>
+<body>
+    <h1 id="noscript">This website requires JavaScript to function!</h1>
+    <div id="contents" style="display:none;">
+        <h1>DEX DASH (Project Loader Utility)</h1>
+
+        <label for="id">URL to load from</label>
+        <input id="id" placeholder="SB3 URL" value="https://maltion.alwaysdata.net/downloads/MClient1.2.sb3" type="number">
+
+        <hr>
+        
+        <a id="link">Loading...</a>
+
+        <p>Once you have the bookmarklet, go to the project you want to override and wait for it to be fully loaded. If you don't wait for it to load all the way it may fail and require a refresh.</p>
+        <p> Then, click the bookmark. If it succeeded, the project will have been overrided with your provided project URL.</p>
+
+        <p>This supports TurboWarp</p>
+    </div>
+    <footer>
+        <a href="https://github.com/anonynmous-exdash/project-loader/">GitHub</a>
+        <span style="margin-left:20px;">Originally created for MClient</span>
+        <a href="https://hits.seeyoufarm.com" style="opacity: 0; width:1px;height:1px;"><img style="opacity: 0; width:1px;height:1px;" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fanonynmous-exdash.github.io%2Fcloud-id-switcher%2F&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+    </footer>
+    <script>
+        document.getElementById("noscript").style.display = "none"
+        document.getElementById("contents").style.display = "block"
+
+        const link = document.getElementById("link")
+        const idElm = document.getElementById("id")
+
+        async function UpdateBookmarklet(){
+            let id = idElm.value.toString().replaceAll('"', "")
+            let code = `javascript:  "Made by anonynmous-exdash  for Maltion. Contact at joeizcooler@gmail.com";  if (typeof vm == "undefined")  var vm = document    .getElementById("app")    ._reactRootContainer._internalRoot.current.child.pendingProps.store.getState()    .scratchGui.vm;vm.runtime.canAddCloudVariable = function () {  return "true";};alert(  "Downloading, and loading MClient from the internet. Hit enter to start download.",);fetch("${id}")  .then((r) => r.arrayBuffer())  .then((buffer) => vm.loadProject(buffer))  .then(() => {    console.log("Loaded project!");    alert("Loaded project!");  })  .catch((error) => {    console.log("Error loading custom project;", error);  });`
+            link.textContent = "Drag THIS link to your bookmark bar"
+            link.href = code
+
+
+        }
+        UpdateBookmarklet()
+
+        idElm.addEventListener("change", UpdateBookmarklet)
+    </script>
+</body>
+</html>
