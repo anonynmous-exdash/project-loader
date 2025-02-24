@@ -31,6 +31,12 @@
 
         <label for="id">URL to load from</label>
         <input id="id" placeholder="SB3 URL" value="https://maltion.alwaysdata.net/downloads/MClient1.3.sb3" type="text">
+        <br>
+        <span>Presets</span>
+        <select id="preset">
+            <option value="https://maltion.alwaysdata.net/downloads/MClient1.3.sb3">MClient 1.3</option>
+        </select>
+        <button id="apply-preset">Apply Preset</button>
 
         <hr>
         
@@ -58,12 +64,15 @@
             let code = `javascript:  "Made by anonynmous-exdash  for Maltion. Contact at joeizcooler@gmail.com";  if (typeof vm == "undefined")  var vm = document    .getElementById("app")    ._reactRootContainer._internalRoot.current.child.pendingProps.store.getState()    .scratchGui.vm;vm.runtime.canAddCloudVariable = function () {  return "true";};alert(  "Downloading, and loading MClient from the internet. Hit enter to start download and please be patient.",);fetch("${id}")  .then((r) => r.arrayBuffer())  .then((buffer) => vm.loadProject(buffer))  .then(() => {    console.log("Loaded project!");    alert("Loaded project!");  })  .catch((error) => {   alert("Something went wrong when downloading the project!"); console.log("Error loading custom project;", error);  });`
             link.textContent = "Drag THIS link to your bookmark bar"
             link.href = code
-
-
         }
         UpdateBookmarklet()
 
         idElm.addEventListener("change", UpdateBookmarklet)
+
+        document.querySelector("#apply-preset").addEventListener("click", ()=>{
+            idElm.value = document.querySelector("#preset").value
+            UpdateBookmarklet()
+        })
     </script>
 </body>
 </html>
